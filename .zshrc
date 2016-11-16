@@ -35,6 +35,11 @@ alias mp="mousepad"
 alias py="python"
 alias config="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
+alias mips-gcc='mips-linux-gnu-gcc-4.6'
+alias mips-objdump='mips-linux-gnu-objdump'
+alias gcc-allflags='gcc -Wall -Wextra -Werror -pedantic -std=c99 -g'
+
+
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 ZSH_CACHE_DIR=$HOME/.oh-my-zsh-cache
