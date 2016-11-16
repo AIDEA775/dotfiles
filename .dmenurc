@@ -1,0 +1,24 @@
+#!/bin/bash
+# ~/.dmenurc
+
+# define the font for dmenu to be used
+DMENU_FN="NotoSans-10"
+
+# background colour for unselected menu-items
+DMENU_NB="#212121"
+
+# textcolour for unselected menu-items
+DMENU_NF="#9E9E9E"
+
+# background colour for selected menu-items
+DMENU_SB="#FF3D00"
+
+# textcolour for selected menu-items
+DMENU_SF="#000000"
+
+# command for the terminal application to be used:
+TERMINAL_CMD="urxvt -e"
+
+# export our variables
+DMENU_OPTIONS="-fn $DMENU_FN -nb $DMENU_NB -nf $DMENU_NF -sf $DMENU_SF -sb $DMENU_SB -h 21 -l 51s -w 250"
+export DMENU_FN DMENU_NB DMENU_NF DMENU_SF DMENU_SB DMENU_OPTIONS TERMINAL
