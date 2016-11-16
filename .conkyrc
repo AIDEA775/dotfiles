@@ -37,8 +37,8 @@ conky.config = {
 	color4 = 'E6E6E6',
  	}
 
-conky.text = [[ 
-$alignc${offset 12}${voffset 72}${time %H:%M}
+conky.text = [[
+$alignc${offset 12}${voffset 105}${time %H:%M}
 $alignr${offset -171}${voffset 25}${font Roboto:size=11}${color1}${mem}
 ${color3}${offset 16}${membar}${offset -205}$color4${execibar 3599 echo 0}
 ${offset 235}${voffset -43}${font Roboto Light:size=31}${color2}${memperc}%
@@ -46,5 +46,5 @@ ${alignr}${offset -310}${voffset 24}${font Roboto:size=11}${color1}${freq} MHz
 ${offset 95}${voffset -34}${font Roboto Light:size=25}${color2}${cpu}%
 ${alignr}${offset -310}${voffset 30}${font Roboto:size=11}${color1}ACPI
 ${offset 94}${voffset -34}${font Roboto Light:size=25}${color2}${acpitemp}°
-${image .conkyrc-background.png -s 395x472}
+${image .conky-bg.png -s 395x472}
 ]]
