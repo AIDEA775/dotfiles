@@ -15,7 +15,7 @@ new_float normal
 hide_edge_borders both
 
 # Font for window titles.
-font pango:Noto sans 12
+font pango:Noto sans 11
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
@@ -48,13 +48,9 @@ bindsym $mod+Ctrl+x exec xkill
 
 focus_follows_mouse yes
 
-# mod+` cambiar estacion de trabajo ciclico
-bindcode $mod+49 workspace next
-bindcode $mod+Shift+49 workspace prev
-
-# mod+tab cambiar ventada o tab
-bindsym $mod+BackSpace focus right
-bindsym $mod+Shift+BackSpace focus left
+# mod+` change tab
+bindcode $mod+49 focus right
+bindcode $mod+Shift+49 focus left
 
 # Manual management of external displays
 set $mode_display (V)GA on >> (F)rom VGA >> (T)o HDMI >> (H)DMI off
