@@ -172,7 +172,7 @@ for_window [class="Pamac-updater"] floating enable
 for_window [class="Qtconfig-qt4"] floating enable sticky enable
 for_window [class="Simple-scan"] floating enable
 for_window [class="(?i)System-config-printer.py"] floating enable
-for_window [class="telegram-desktop"] floating enable move scratchpad
+for_window [class="TelegramDesktop"] floating enable move scratchpad
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
