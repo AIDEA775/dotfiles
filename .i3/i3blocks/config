@@ -5,31 +5,28 @@ command=/usr/lib/i3blocks/$BLOCK_NAME
 
 full_text=
 align=center
-color=#FFFDD0
+color=#424242
 separator=false
 separator_block_width=5
 
 [separator]
-
 full_text=
 align=centerh
 
 
 [keyboard]
-
 label=⌨
 command=~/.i3/i3blocks/blocklets/keyboard.sh
-color=#00BCD4
+color=#D50000
 interval=once
 
 [separator]
 
 
 [volume]
-
-label= 
+label=
 command=~/.i3/i3blocks/blocklets/volume.sh
-color=#FFEB3B
+color=#E91E63
 interval=once
 signal=10
 
@@ -37,22 +34,10 @@ signal=10
 [separator]
 
 
-[weather]
-
-full_text= 
-command=~/.i3/i3blocks/blocklets/iconweather.sh "SAM|AR|AR005|CORDOBA"
-interval=30
-color=#E91E63
-
-
-[separator]
-
-
 [disk-home]
-
-label= 
+label=
 command=~/.i3/i3blocks/blocklets/disk $HOME
-color=#4DB6AC
+color=#3F51B5
 interval=30
 
 
@@ -60,8 +45,7 @@ interval=30
 
 
 [battery]
-
-color=#E040FB
+color=#0097A7
 command=~/.i3/i3blocks/blocklets/battery
 instance=0
 interval=30
@@ -71,21 +55,19 @@ interval=30
 
 
 [download]
-
 label=⇃
 command=~/.i3/i3blocks/blocklets/bandwidth.sh rx
 align=left
 min_width=⇃100kB/s
-color=#f44336
+color=#1B5E20
 interval=1 # IMPORTANT
 
 [upload]
-
 label=↿
 command=~/.i3/i3blocks/blocklets/bandwidth.sh tx
 min_width=↿100kB/s
 align=right
-color=#8BC34A
+color=#689F38
 interval=1 # IMPORTANT
 
 
@@ -93,10 +75,9 @@ interval=1 # IMPORTANT
 
 
 [Date]
-
-label= 
+label=
 command=date '+%a %d %b, %Y'; [[ -z "${BLOCK_BUTTON}" ]] || i3-msg "exec --no-startup-id gsimplecal"
-color=#03A9F4
+color=#8D6E63
 interval=30
 
 
@@ -104,16 +85,14 @@ interval=30
 
 
 [Time]
-
-label= 
+label=
 command=date '+%H:%M:%S'
 #command=~/.i3/i3blocks/blocklets/date.sh
-color=#B0BEC5
+color=#424242
 interval=1
 
 
 [separator]
-
-full_text= 
+full_text=
 align=center
 separator=false

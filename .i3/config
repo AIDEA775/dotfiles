@@ -8,8 +8,8 @@ set $mod Mod4
 workspace_layout default
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-new_window normal
-new_float normal
+new_window none
+new_float none
 
 # Hide borders
 hide_edge_borders both
@@ -20,72 +20,57 @@ font pango:Noto sans 11
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
-# start a terminal
-bindsym $mod+Return exec terminal
+# Focus with mouse
+focus_follows_mouse yes
+
+# switch to workspace with urgent window automatically
+for_window [urgent=latest] focus
+
+#############################
+### Settings for actions: ###
+#############################
 
 # kill focused window
 bindsym $mod+q kill
 
-# start program launcher
-bindsym $mod+s exec --no-startup-id dmenu_recency -p Start:
+# Lock screen
+bindsym $mod+9 exec --no-startup-id blurlock
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace, preserves your layout/session
+bindsym $mod+Shift+r restart
+
+# Modifier bar mode
+bindsym $mod+space bar mode toggle status
 
 # Screen brightness controls
 # bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
 # bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
 
-# Start Applications
-bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
-bindsym $mod+F2 exec --no-startup-id opera
-bindsym $mod+F3 exec pcmanfm
-bindsym $mod+Shift+F3 exec gksu pcmanfm
-bindsym $mod+F4 exec terminal -e 'ranger'
-bindsym $mod+F5 exec terminal -e 'ncmpcpp'
-bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
-bindsym Print exec --no-startup-id "scrot -e 'mv $f ~/Screenshots'; sleep 1; exec notify-send 'Screenshot has been saved'"
-bindsym $mod+Print --release exec --no-startup-id "scrot -e 'mv $f ~/Screenshots'; sleep 1; exec notify-send 'Screenshot has been saved'"
-bindsym $mod+Shift+Print --release exec "notify-send 'Selection will be saved'; scrot -se 'mv $f ~/Screenshots'"
-bindsym $mod+Ctrl+x exec xkill
 
-focus_follows_mouse yes
+################################
+### Settings for navigation: ###
+################################
 
-# mod+` change tab
-bindcode $mod+49 focus right
-bindcode $mod+Shift+49 focus left
-
-# Manual management of external displays
-set $mode_display (V)GA on >> (F)rom VGA >> (T)o HDMI >> (H)DMI off
-mode "$mode_display" {
-    bindsym v exec --no-startup-id "xrandr --output VGA1 --auto --primary; xrandr --output LVDS1 --off", mode "default"
-    bindsym f exec --no-startup-id "xrandr --output LVDS1 --auto --primary; xrandr --output VGA1 --off", mode "default"
-    bindsym t exec --no-startup-id "xrandr --output HDMI1 --auto --primary; xrandr --output LVDS1 --off", mode "default"
-    bindsym h exec --no-startup-id "xrandr --output LVDS1 --auto --primary; xrandr --output HDMI1 --off", mode "default"
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-# Cambiar pantalla
-bindsym $mod+m mode "$mode_display"
-
-# cambiar estacion de trabajo con escritorios vacios
-#bindsym $mod+h workspace prev
+# navigate workspaces include emptys
 bindsym $mod+h exec --no-startup-id ~/.i3/prev.sh
 bindsym $mod+i exec --no-startup-id ~/.i3/next.sh
 
-# bordes para todos
-for_window [class="^.*"] border none
+# navigate workspaces without emptys
+bindsym $mod+Right workspace next
+bindsym $mod+Left workspace prev
 
-# alternatively, you can use the cursor keys:
-#bindsym $mod+Left focus left
-#bindsym $mod+Down focus down
-#bindsym $mod+Up focus up
-#bindsym $mod+Right focus right
+# mod+` change tab/focus
+bindcode $mod+49 focus right
+bindcode $mod+Shift+49 focus left
 
-# move focused window
+# move focused window (vim like)
 bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+Shift+n move down
+bindsym $mod+Shift+e move up
+bindsym $mod+Shift+i move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -97,6 +82,11 @@ bindsym $mod+Shift+Right move right
 workspace_auto_back_and_forth yes
 bindsym $mod+a workspace back_and_forth
 bindsym $mod+Shift+a move container to workspace back_and_forth; workspace back_and_forth
+
+
+################################
+### Settings for containers: ###
+################################
 
 # split containers
 bindsym $mod+v split vertical
@@ -111,6 +101,15 @@ bindsym $mod+Shift+space floating toggle
 
 # toggle sticky
 bindsym $mod+Shift+s sticky toggle
+
+# Scrachpads windows
+bindsym $mod+Shift+q move scratchpad
+bindsym $mod+Tab scratchpad show
+
+
+################################
+### Settings for workspaces: ###
+################################
 
 # Workspace names
 set $wm1 "1: one "
@@ -130,10 +129,6 @@ bindsym $mod+5 workspace $wm5
 bindsym $mod+6 workspace $wm6
 bindsym $mod+7 workspace $wm7
 
-#navigate workspaces next / previous
-bindsym $mod+Right workspace next
-bindsym $mod+Left workspace prev
-
 # Move focused container to workspace
 bindsym $mod+Ctrl+1 move container to workspace $wm1
 bindsym $mod+Ctrl+2 move container to workspace $wm2
@@ -151,6 +146,170 @@ bindsym $mod+Shift+4 move container to workspace $wm4; workspace $wm4
 bindsym $mod+Shift+5 move container to workspace $wm5; workspace $wm5
 bindsym $mod+Shift+6 move container to workspace $wm6; workspace $wm6
 bindsym $mod+Shift+7 move container to workspace $wm7; workspace $wm7
+
+
+###########################
+### Settings for modes: ###
+###########################
+
+# Set shut down, restart and locking features
+set $mode_system (L)ock (E)xit (R)eboot (S)hutdown 
+bindsym $mod+0 mode "$mode_system"
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym s exec --no-startup-id i3exit shutdown, mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# Manual management of external displays
+set $mode_display  Display: (V)GA/(H)DMI/(L)VDS 
+bindsym $mod+m mode "$mode_display"
+mode "$mode_display" {
+    bindsym v mode "$mode_vga"
+    bindsym h mode "$mode_hdmi"
+    bindsym l mode "$mode_lvds"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# VGA
+set $mode_vga  VGA: (E)nable/(D)isable 
+mode "$mode_vga" {
+    bindsym e exec --no-startup-id "xrandr --output VGA1 --auto --primary", mode "$mode_display"
+    bindsym d exec --no-startup-id "xrandr --output VGA1 --off", mode "$mode_display"
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+
+# HDMI
+set $mode_hdmi  HDMI: (E)nable/(D)isable 
+mode "$mode_hdmi" {
+    bindsym e exec --no-startup-id "xrandr --output HDMI1 --auto --primary", mode "$mode_display"
+    bindsym d exec --no-startup-id "xrandr --output HDMI1 --off", mode "$mode_display"
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+
+# LVDS
+set $mode_lvds  LVDS: (E)nable/(D)isable 
+mode "$mode_lvds" {
+    bindsym e exec --no-startup-id "xrandr --output LVDS1 --auto --primary", mode "$mode_display"
+    bindsym d exec --no-startup-id "xrandr --output LVDS1 --off", mode "$mode_display"
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+
+
+# Resize window
+set $mode_resize  Resize 
+bindsym $mod+r mode "$mode_resize"
+mode "$mode_resize" {
+        bindsym j resize shrink width 5 px or 5 ppt
+        bindsym k resize grow height 5 px or 5 ppt
+        bindsym l resize shrink height 5 px or 5 ppt
+        bindsym odiaeresis resize grow width 5 px or 5 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # exit resize mode: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+
+################################
+### Settings for bar/colors: ###
+################################
+
+# Theme colors
+set $black "#000000"
+set $white "#FFFFFF"
+
+set $clear0 "#E0E0E0"
+set $clear1 "#F5F5F5"
+
+set $dark0 "#000000"
+set $dark1 "#212121"
+set $dark2 "#424242"
+
+set $gray "#9E9E9E"
+set $unknown "#FF00FF"
+
+# class                 border  backgr. text   indicator child_border
+client.focused_inactive $clear1 $clear1 $dark2 $unknown
+client.focused          $clear1 $clear1 $dark2 $unknown
+client.unfocused        $dark1  $dark1  $gray  $unknown
+client.urgent           $clear0 $clear0 $dark1 $unknown
+client.background       $clear0
+
+# i3bar
+bar {
+    id status
+    status_command i3blocks -c ~/.i3/i3blocks/config
+
+    mode hide
+    hidden_state hide
+    modifier mod4
+    position bottom
+
+    workspace_buttons yes
+    strip_workspace_numbers yes
+    binding_mode_indicator yes
+    tray_padding 1px
+
+    font pango:Noto sans 12
+    colors {
+        #                  border   backgr   dark
+        focused_workspace  $clear1  $clear1  $dark0
+        active_workspace   $unknown $unknown $unknown
+        inactive_workspace $clear0  $clear0  $dark2
+        urgent_workspace   $clear0  $clear0  $dark1
+
+        background $clear0
+    }
+}
+
+
+##################################
+### Settings for applications: ###
+##################################
+
+# Start Applications
+bindsym $mod+F2 exec --no-startup-id opera
+bindsym $mod+F3 exec pcmanfm
+bindsym $mod+Shift+F3 exec gksu pcmanfm
+bindsym $mod+F4 exec terminal -e 'ranger'
+bindsym $mod+F5 exec terminal -e 'ncmpcpp'
+
+bindsym Print exec --no-startup-id "scrot -e 'mv $f ~/Screenshots'; sleep 1; exec notify-send 'Screenshot has been saved'"
+bindsym $mod+Print --release exec --no-startup-id "scrot -e 'mv $f ~/Screenshots'; sleep 1; exec notify-send 'Screenshot has been saved'"
+bindsym $mod+Shift+Print --release exec "notify-send 'Selection will be saved'; scrot -se 'mv $f ~/Screenshots'"
+
+bindsym $mod+Return exec terminal
+bindsym $mod+s exec --no-startup-id dmenu_recency -p Start:
+bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
+bindsym $mod+Ctrl+x exec xkill
+bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
+
+# Autostart applications
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id nitrogen --restore
+exec --no-startup-id nm-applet
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id clipit
+exec --no-startup-id xautolock -time 1-5 -locker blurlock
+exec --no-startup-id conky -c ~/.conkyrc
+exec --no-startup-id compton --opacity-rule '100:window_type = "dock" && class_g = "i3bar"' -b
+# exec --no-startup-id blueman
+# exec --no-startup-id pamac-tray
+# exec_always --no-startup-id sbxkb
 
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] 1
@@ -174,110 +333,6 @@ for_window [class="Simple-scan"] floating enable
 for_window [class="(?i)System-config-printer.py"] floating enable
 for_window [class="TelegramDesktop"] floating enable move scratchpad
 
-# switch to workspace with urgent window automatically
-for_window [urgent=latest] focus
-
-# reload the configuration file
-bindsym $mod+Shift+c reload
-
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-
-# Set shut down, restart and locking features
-bindsym $mod+0 mode "$mode_system"
-set $mode_system (L)ock >> (E)xit >> (R)eboot >> (S)hutdown
-mode "$mode_system" {
-    bindsym l exec --no-startup-id i3exit lock, mode "default"
-    bindsym e exec --no-startup-id i3exit logout, mode "default"
-    bindsym r exec --no-startup-id i3exit reboot, mode "default"
-    bindsym s exec --no-startup-id i3exit shutdown, mode "default"
-
-    # exit system mode: "Enter" or "Escape"
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
-# Resize window (you can also use the mouse for that)
-bindsym $mod+r mode "resize"
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 5 px or 5 ppt
-        bindsym k resize grow height 5 px or 5 ppt
-        bindsym l resize shrink height 5 px or 5 ppt
-        bindsym odiaeresis resize grow width 5 px or 5 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
-        # exit resize mode: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-
-# Lock screen
-bindsym $mod+9 exec --no-startup-id blurlock
-
-# Start i3bar to display a workspace bar (plus the system information i3status if available)
-bar {
-    id status
-    status_command i3blocks -c ~/.i3/i3blocks/config
-
-    mode hide
-    hidden_state hide
-    modifier mod4
-    position bottom
-
-    workspace_buttons yes
-    strip_workspace_numbers yes
-    binding_mode_indicator yes
-    tray_padding 1px
-
-    font pango:Noto sans 12
-    colors {
-        background #212121
-        #                  border  backgr. text
-        focused_workspace  #FF3D00 #FF3D00 #000000
-        active_workspace   #00FF00 #00FF00 #000000
-        inactive_workspace #212121 #212121 #9E9E9E
-        urgent_workspace   #F50057 #F50057 #000000
-    }
-}
-
-# Modifier bar mode
-bindsym $mod+space bar mode toggle status
-
-# Scrachpads windows
-bindsym $mod+Shift+q move scratchpad
-bindsym $mod+Tab scratchpad show
-
-# Theme colors
-# class                 border  backgr. text    indicator child_border
-client.focused_inactive #FF3D00 #FF3D00 #212121 #00FF00
-client.focused          #FF3D00 #FF3D00 #000000 #00FF00
-client.unfocused        #212121 #212121 #9E9E9E #00FF00
-client.urgent           #F50057 #F50057 #000000 #00FF00
-client.background       #212121
-
-# Autostart applications
-
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nitrogen --restore
-exec --no-startup-id nm-applet
-exec --no-startup-id xfce4-power-manager
-# exec --no-startup-id pamac-tray
-exec --no-startup-id clipit
-# exec --no-startup-id blueman
-# exec_always --no-startup-id sbxkb
-exec --no-startup-id xautolock -time 1-5 -locker blurlock
-exec --no-startup-id conky -c ~/.conkyrc
-exec --no-startup-id compton --opacity-rule '100:window_type = "dock" && class_g = "i3bar"' -b
 
 #############################
 ### settings for i3-gaps: ###
