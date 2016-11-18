@@ -41,9 +41,9 @@ bindsym $mod+Shift+F3 exec gksu pcmanfm
 bindsym $mod+F4 exec terminal -e 'ranger'
 bindsym $mod+F5 exec terminal -e 'ncmpcpp'
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
-bindsym Print exec --no-startup-id "scrot -e 'mv $f ~/Screenshots'; sleep 1; exec notify-send 'screenshot has been saved to ~/Screenshots'"
-bindsym $mod+Print --release exec --no-startup-id "scrot -e 'mv $f ~/Screenshots'; sleep 1; exec notify-send 'screenshot has been saved to ~/Screenshots'"
-bindsym $mod+Shift+Print --release exec "notify-send 'selection will be saved to ~/Screenshots'; scrot -se 'mv $f ~/Screenshots'"
+bindsym Print exec --no-startup-id "scrot -e 'mv $f ~/Screenshots'; sleep 1; exec notify-send 'Screenshot has been saved'"
+bindsym $mod+Print --release exec --no-startup-id "scrot -e 'mv $f ~/Screenshots'; sleep 1; exec notify-send 'Screenshot has been saved'"
+bindsym $mod+Shift+Print --release exec "notify-send 'Selection will be saved'; scrot -se 'mv $f ~/Screenshots'"
 bindsym $mod+Ctrl+x exec xkill
 
 focus_follows_mouse yes
