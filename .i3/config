@@ -269,7 +269,7 @@ bar {
         #                  border   backgr   dark
         focused_workspace  $clear1  $clear1  $dark0
         active_workspace   $unknown $unknown $unknown
-        inactive_workspace $clear0  $clear0  $dark2
+        inactive_workspace $clear0  $clear0  $gray
         urgent_workspace   $clear0  $clear0  $dark1
 
         background $clear0
