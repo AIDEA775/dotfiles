@@ -20,8 +20,8 @@ SCONTROL="${3:-Master}"
 
 case $BLOCK_BUTTON in
   3) amixer -q sset $SCONTROL toggle ;; # right click, mute/unmute
-  4) amixer -q sset $SCONTROL 1%+ ;;    # scroll up, increase
-  5) amixer -q sset $SCONTROL 1%- ;;    # scroll down, decrease
+  4) amixer -q sset $SCONTROL 5%+ ;;    # scroll up, increase
+  5) amixer -q sset $SCONTROL 5%- ;;    # scroll down, decrease
 esac
 
 volume () {
