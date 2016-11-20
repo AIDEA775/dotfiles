@@ -306,7 +306,7 @@ exec --no-startup-id xfce4-power-manager
 exec --no-startup-id clipit
 exec --no-startup-id xautolock -time 1-5 -locker blurlock
 exec --no-startup-id conky -c ~/.conkyrc
-exec --no-startup-id compton --opacity-rule '100:window_type = "dock" && class_g = "i3bar"' -b
+exec --no-startup-id compton -b
 # exec --no-startup-id blueman
 # exec --no-startup-id pamac-tray
 # exec_always --no-startup-id sbxkb
