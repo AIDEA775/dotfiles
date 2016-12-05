@@ -283,8 +283,8 @@ bar {
 
 # Start Applications
 bindsym $mod+F2 exec --no-startup-id opera
-bindsym $mod+F3 exec pcmanfm
-bindsym $mod+Shift+F3 exec gksu pcmanfm
+bindsym $mod+F3 exec spacefm
+bindsym $mod+Shift+F3 exec gksu spacefm
 bindsym $mod+F4 exec terminal -e 'ranger'
 bindsym $mod+F5 exec terminal -e 'ncmpcpp'
 
@@ -292,21 +292,22 @@ bindsym Print exec --no-startup-id "scrot -e 'mv $f ~/Screenshots'; sleep 1; exe
 bindsym $mod+Print --release exec --no-startup-id "scrot -e 'mv $f ~/Screenshots'; sleep 1; exec notify-send 'Screenshot has been saved'"
 bindsym $mod+Shift+Print --release exec "notify-send 'Selection will be saved'; scrot -se 'mv $f ~/Screenshots'"
 
-bindsym $mod+Return exec terminal
-bindsym $mod+s exec --no-startup-id dmenu_recency -p Start:
-bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
+bindsym $mod+Return exec urxvt
+bindsym $mod+s exec --no-startup-id dmenu_recent
+# bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
 bindsym $mod+Ctrl+x exec xkill
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 
 # Autostart applications
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id nm-applet
-exec --no-startup-id xfce4-power-manager
 exec --no-startup-id clipit
 exec --no-startup-id xautolock -time 1-5 -locker blurlock
 exec --no-startup-id conky -c ~/.conkyrc
 exec --no-startup-id compton -b
+exec --no-startup-id dunst
+# exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# exec --no-startup-id xfce4-power-manager
 # exec --no-startup-id blueman
 # exec --no-startup-id pamac-tray
 # exec_always --no-startup-id sbxkb
@@ -332,6 +333,7 @@ for_window [class="Qtconfig-qt4"] floating enable sticky enable
 for_window [class="Simple-scan"] floating enable
 for_window [class="(?i)System-config-printer.py"] floating enable
 for_window [class="TelegramDesktop"] floating enable move scratchpad
+for_window [class="youtube-dl-gui"] floating enable
 
 
 #############################

@@ -19,6 +19,12 @@ DMENU_SF="#000000"
 # command for the terminal application to be used:
 TERMINAL_CMD="urxvt -e"
 
+# size and position
+DMENU_W="1266"
+DMENU_H="30"
+DMENU_XO="50"
+DMENU_YO="30"
+
 # export our variables
-DMENU_OPTIONS="-fn $DMENU_FN -nb $DMENU_NB -nf $DMENU_NF -sf $DMENU_SF -sb $DMENU_SB -h 21 -l 51s -w 250"
-export DMENU_FN DMENU_NB DMENU_NF DMENU_SF DMENU_SB DMENU_OPTIONS TERMINAL
+DMENU_OPTIONS="-l 7 -dim 0.7 -fn $DMENU_FN -nb $DMENU_NB -nf $DMENU_NF -sf $DMENU_SF -sb $DMENU_SB -h $DMENU_H -w $DMENU_W -x $DMENU_XO -y $DMENU_YO"
+export DMENU_FN DMENU_NB DMENU_NF DMENU_SF DMENU_SB DMENU_OPTIONS TERMINAL DMENU_W DMENU_H DMENU_XO DMENU_YO

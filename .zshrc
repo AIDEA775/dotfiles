@@ -6,7 +6,7 @@ ZSH=/usr/share/oh-my-zsh/
 ZSH_THEME="pure"
 
 # Same cool colors for ls command and autocomplete
-eval `dircolors ~/.dir_colors_ansi-dark`
+eval `dircolors ~/.dircolors.ansi-dark`
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 # Disable bi-weekly auto-update checks.
