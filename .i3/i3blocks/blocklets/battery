@@ -43,7 +43,7 @@ END {
 	else if (state == "fully-charged")
 		label = "♥"
 	else
-		label = ""
+		label = ""
 
 	# full text
 	print label " " percentage \

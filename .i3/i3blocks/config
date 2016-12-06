@@ -3,19 +3,19 @@
 command=/usr/lib/i3blocks/$BLOCK_NAME
 
 
-full_text=
+full_text=
 align=center
 color=#424242
 separator=false
 separator_block_width=5
 
 [separator]
-full_text=
+full_text=
 align=centerh
 
 
 [keyboard]
-label=⌨
+label=
 command=~/.i3/i3blocks/blocklets/keyboard.sh
 color=#D50000
 interval=once
@@ -24,7 +24,7 @@ interval=once
 
 
 [volume]
-label=
+label=
 command=~/.i3/i3blocks/blocklets/volume.sh
 color=#E91E63
 interval=once
@@ -35,7 +35,7 @@ signal=10
 
 
 [disk-home]
-label=
+label=
 command=~/.i3/i3blocks/blocklets/disk $HOME
 color=#3F51B5
 interval=30
@@ -75,7 +75,7 @@ interval=1 # IMPORTANT
 
 
 [Date]
-label=
+label=
 command=date '+%a %d %b, %Y'; [[ -z "${BLOCK_BUTTON}" ]] || i3-msg "exec --no-startup-id gsimplecal"
 color=#8D6E63
 interval=30
@@ -85,7 +85,7 @@ interval=30
 
 
 [Time]
-label=
+label=
 command=date '+%H:%M:%S'
 #command=~/.i3/i3blocks/blocklets/date.sh
 color=#424242
@@ -93,6 +93,7 @@ interval=1
 
 
 [separator]
-full_text=
+full_text=
 align=center
 separator=false
+

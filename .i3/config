@@ -15,10 +15,11 @@ new_float none
 hide_edge_borders both
 
 # Font for window titles.
-font pango:Noto sans 11
+font pango:NotoSans Nerd Font 11
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
+
 
 # Focus with mouse
 focus_follows_mouse yes
@@ -153,7 +154,7 @@ bindsym $mod+Shift+7 move container to workspace $wm7; workspace $wm7
 ###########################
 
 # Set shut down, restart and locking features
-set $mode_system  System: (L)ock/(E)xit/(R)eboot/(P)oweroff 
+set $mode_system  System: (L)ock/(E)xit/(R)eboot/(P)oweroff
 bindsym $mod+0 mode "$mode_system"
 mode "$mode_system" {
     bindsym l exec --no-startup-id i3exit lock, mode "default"
@@ -165,7 +166,7 @@ mode "$mode_system" {
 }
 
 # Manual management of external displays
-set $mode_display  Display: (V)GA/(H)DMI/(L)VDS 
+set $mode_display  Display: (V)GA/(H)DMI/(L)VDS
 bindsym $mod+m mode "$mode_display"
 mode "$mode_display" {
     bindsym v mode "$mode_vga"
@@ -176,7 +177,7 @@ mode "$mode_display" {
 }
 
 # VGA
-set $mode_vga  VGA: (E)nable/(D)isable 
+set $mode_vga  VGA: (E)nable/(D)isable
 mode "$mode_vga" {
     bindsym e exec --no-startup-id "xrandr --output VGA1 --auto --primary", mode "$mode_display"
     bindsym d exec --no-startup-id "xrandr --output VGA1 --off", mode "$mode_display"
@@ -185,7 +186,7 @@ mode "$mode_vga" {
 }
 
 # HDMI
-set $mode_hdmi  HDMI: (E)nable/(D)isable 
+set $mode_hdmi  HDMI: (E)nable/(D)isable
 mode "$mode_hdmi" {
     bindsym e exec --no-startup-id "xrandr --output HDMI1 --auto --primary", mode "$mode_display"
     bindsym d exec --no-startup-id "xrandr --output HDMI1 --off", mode "$mode_display"
@@ -194,7 +195,7 @@ mode "$mode_hdmi" {
 }
 
 # LVDS
-set $mode_lvds  LVDS: (E)nable/(D)isable 
+set $mode_lvds  LVDS: (E)nable/(D)isable
 mode "$mode_lvds" {
     bindsym e exec --no-startup-id "xrandr --output LVDS1 --auto --primary", mode "$mode_display"
     bindsym d exec --no-startup-id "xrandr --output LVDS1 --off", mode "$mode_display"
@@ -204,7 +205,7 @@ mode "$mode_lvds" {
 
 
 # Resize window
-set $mode_resize  Resize: 
+set $mode_resize  Resize
 bindsym $mod+r mode "$mode_resize"
 mode "$mode_resize" {
         bindsym j resize shrink width 5 px or 5 ppt
@@ -264,7 +265,7 @@ bar {
     binding_mode_indicator yes
     tray_padding 1px
 
-    font pango:Noto sans 12
+    font pango:NotoSans Nerd Font 12
     colors {
         #                  border   backgr   dark
         focused_workspace  $clear1  $clear1  $dark0

@@ -1,5 +1,5 @@
 ! Font
-URxvt.font:xft:Noto Mono:pixelsize=13
+URxvt.font:xft:NotoMono Nerd Font:pixelsize=13
 URxvt.cursorUnderline:true
 URxvt.imLocale: en_US.utf8
 
