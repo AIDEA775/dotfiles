@@ -34,6 +34,7 @@ alias fixit="sudo rm /var/lib/pacman/db.lck"
 alias mp="mousepad"
 alias py="python"
 alias config="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+alias okey-google="ping google.com"
 
 alias mips-gcc='mips-linux-gnu-gcc-4.6'
 alias mips-objdump='mips-linux-gnu-objdump'
