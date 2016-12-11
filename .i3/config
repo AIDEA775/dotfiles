@@ -20,7 +20,6 @@ font pango:NotoSans Nerd Font 11
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
-
 # Focus with mouse
 focus_follows_mouse yes
 
@@ -255,7 +254,7 @@ bar {
     id status
     status_command i3blocks -c ~/.i3/i3blocks/config
 
-    mode hide
+    mode dock
     hidden_state hide
     modifier mod4
     position bottom
@@ -334,7 +333,7 @@ for_window [class="Qtconfig-qt4"] floating enable sticky enable
 for_window [class="Simple-scan"] floating enable
 for_window [class="(?i)System-config-printer.py"] floating enable
 for_window [class="TelegramDesktop"] floating enable move scratchpad
-for_window [class="youtube-dl-gui"] floating enable
+for_window [class="Youtube-dl-gui"] floating enable
 
 
 #############################
