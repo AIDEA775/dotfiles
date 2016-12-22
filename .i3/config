@@ -283,8 +283,8 @@ bar {
 
 # Start Applications
 bindsym $mod+F2 exec --no-startup-id opera
-bindsym $mod+F3 exec spacefm
-bindsym $mod+Shift+F3 exec gksu spacefm
+bindsym $mod+F3 exec pcmanfm
+bindsym $mod+Shift+F3 exec gksu pcmanfm
 bindsym $mod+F4 exec terminal -e 'ranger'
 bindsym $mod+F5 exec terminal -e 'ncmpcpp'
 
