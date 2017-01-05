@@ -20,6 +20,8 @@ URxvt*cursorBlink:                    false
 URxvt*saveLines:                      5000
 URxvt.letterspace:-1
 
+urxvt*depth: 32
+urxvt*background: rgba:0000/0000/0200/c800
 
 ! Colors
 ! special
