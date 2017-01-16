@@ -2,7 +2,7 @@
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
 include "/home/aidea775/.gtkrc-2.0.mine"
-gtk-theme-name="Arc-Darker"
+gtk-theme-name="Arc"
 gtk-icon-theme-name="Numix-Circle-Light"
 gtk-font-name="Noto Sans UI 9"
 gtk-cursor-theme-name="Numix-Cursor"
