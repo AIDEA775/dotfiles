@@ -5,7 +5,7 @@
 set $mod Mod4
 
 # set default desktop layout
-workspace_layout default
+workspace_layout tabbed
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 new_window none
@@ -32,9 +32,6 @@ for_window [urgent=latest] focus
 
 # kill focused window
 bindsym $mod+q kill
-
-# Lock screen
-bindsym $mod+9 exec --no-startup-id blurlock
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -66,7 +63,7 @@ bindsym $mod+Left workspace prev
 bindcode $mod+49 focus right
 bindcode $mod+Shift+49 focus left
 
-# move focused window (vim like)
+# move focused window (like vim)
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+n move down
 bindsym $mod+Shift+e move up
@@ -153,13 +150,12 @@ bindsym $mod+Shift+7 move container to workspace $wm7; workspace $wm7
 ###########################
 
 # Set shut down, restart and locking features
-set $mode_system  System: (L)ock/(E)xit/(R)eboot/(P)oweroff
+set $mode_system  System: (L)ock/(R)eboot/(P)oweroff
 bindsym $mod+0 mode "$mode_system"
 mode "$mode_system" {
-    bindsym l exec --no-startup-id i3exit lock, mode "default"
-    bindsym e exec --no-startup-id i3exit logout, mode "default"
-    bindsym r exec --no-startup-id i3exit reboot, mode "default"
-    bindsym p exec --no-startup-id i3exit shutdown, mode "default"
+    bindsym l exec --no-startup-id lock, mode "default"
+    bindsym r exec --no-startup-id reboot, mode "default"
+    bindsym p exec --no-startup-id poweroff, mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
@@ -301,18 +297,12 @@ bindsym $mod+Ctrl+x exec xkill
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 
 # Autostart applications
-exec --no-startup-id nitrogen --restore
 exec --no-startup-id nm-applet
 exec --no-startup-id clipit
-exec --no-startup-id xautolock -time 1-5 -locker blurlock
-exec --no-startup-id conky -c ~/.conkyrc
+exec --no-startup-id xautolock -time 30 -locker lock -notify 30 -notifier "notify-send -u critical xautolock 'Locking screen in 30 seconds'"
 exec --no-startup-id compton -b
 exec --no-startup-id dunst
-# exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-# exec --no-startup-id xfce4-power-manager
-# exec --no-startup-id blueman
-# exec --no-startup-id pamac-tray
-# exec_always --no-startup-id sbxkb
+# exec --no-startup-id python ~/.i3/change_wallpaper.py
 
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] 1
