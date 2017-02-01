@@ -15,7 +15,7 @@ new_float none
 hide_edge_borders both
 
 # Font for window titles.
-font pango:NotoSans Nerd Font 11
+font pango:NotoSans Nerd Font, Noto Color Emoji 11
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
