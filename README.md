@@ -2,7 +2,7 @@
 
 This look like this:
 
-![Screenshot](/Screenshots/2017-01-11-003326_1366x768_scrot.png?raw=true)
+![Screenshot](/Screenshots/2017-07-18-234718_1366x768_scrot.png?raw=true)
 
 
 #### This is a bare repo, to install this dotfiles follow the instructions:
