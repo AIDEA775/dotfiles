@@ -8,10 +8,10 @@ DMENU_FN="NotoSans-10"
 DMENU_NB="#F5F5F5"
 
 # textcolour for unselected menu-items
-DMENU_NF="#9E9E9E"
+DMENU_NF="#424242"
 
 # background colour for selected menu-items
-DMENU_SB="#FFFFFF"
+DMENU_SB="#E0E0E0"
 
 # textcolour for selected menu-items
 DMENU_SF="#000000"

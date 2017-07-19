@@ -125,6 +125,7 @@ bindsym $mod+4 workspace $wm4
 bindsym $mod+5 workspace $wm5
 bindsym $mod+6 workspace $wm6
 bindsym $mod+7 workspace $wm7
+bindsym $mod+minus workspace "desktop"
 
 # Move focused container to workspace
 bindsym $mod+Ctrl+1 move container to workspace $wm1
@@ -176,7 +177,7 @@ set $mode_vga  VGA: (E)nable/(D)isable/(L)eft
 mode "$mode_vga" {
     bindsym e exec --no-startup-id "xrandr --output VGA1 --auto --primary", mode "$mode_display"
     bindsym d exec --no-startup-id "xrandr --output VGA1 --off", mode "$mode_display"
-    bindsym l exec --no-startup-id "xrandr --output VGA1 --auto --left-of LVDS1", mode "$mode_display"
+    bindsym l exec --no-startup-id "xrandr --output LVDS1 --auto --pos 0x312 --output VGA1 --auto --pos 1366x0", mode "$mode_display"
     bindsym Escape mode "default"
     bindsym Return mode "default"
 }
@@ -186,7 +187,7 @@ set $mode_hdmi  HDMI: (E)nable/(D)isable/(L)eft
 mode "$mode_hdmi" {
     bindsym e exec --no-startup-id "xrandr --output HDMI1 --auto --primary", mode "$mode_display"
     bindsym d exec --no-startup-id "xrandr --output HDMI1 --off", mode "$mode_display"
-    bindsym l exec --no-startup-id "xrandr --output HDMI1 --auto --left-of LVDS1", mode "$mode_display"
+    bindsym l exec --no-startup-id "xrandr --output LVDS1 --auto --pos 0x312 --output HDMI1 --auto --pos 1366x0", mode "$mode_display"
     bindsym Escape mode "default"
     bindsym Return mode "default"
 }
@@ -230,8 +231,8 @@ mode "$mode_resize" {
 set $black "#000000"
 set $white "#FFFFFF"
 
-set $clear0 "#E0E0E0"
-set $clear1 "#F5F5F5"
+set $clear0 "#F5F5F5"
+set $clear1 "#E0E0E0"
 
 set $dark0 "#000000"
 set $dark1 "#212121"
@@ -239,12 +240,13 @@ set $dark2 "#424242"
 
 set $gray "#9E9E9E"
 set $unknown "#FF00FF"
+set $urgent "#D50000"
 
 # class                 border  backgr. text   indicator child_border
-client.focused_inactive $clear1 $clear1 $dark2 $unknown
-client.focused          $clear1 $clear1 $dark2 $unknown
-client.unfocused        $dark1  $dark1  $gray  $unknown
-client.urgent           $clear0 $clear0 $dark1 $unknown
+client.focused_inactive $dark2  $dark2  $white  $unknown
+client.focused          $dark2  $dark2  $clear0 $unknown
+client.unfocused        $dark1  $dark1  $gray   $unknown
+client.urgent           $urgent $urgent $white  $unknown
 client.background       $clear0
 
 # i3bar
@@ -267,8 +269,8 @@ bar {
         #                  border   backgr   text
         focused_workspace  $clear1  $clear1  $dark0
         active_workspace   $clear1  $clear1  $gray
-        inactive_workspace $clear0  $clear0  $gray
-        urgent_workspace   $clear0  $clear0  $dark1
+        inactive_workspace $clear0  $clear0  $dark2
+        urgent_workspace   $urgent  $urgent  $white
 
         background $clear0
     }
@@ -286,7 +288,7 @@ bindsym $mod+Shift+F3 exec gksu pcmanfm
 bindsym $mod+F4 exec terminal -e 'ranger'
 bindsym $mod+F5 exec terminal -e 'ncmpcpp'
 
-bindsym Print exec --no-startup-id "scrot -e 'mv $f ~/Screenshots'; sleep 1; exec notify-send 'Screenshot has been saved'"
+bindsym Print exec --no-startup-id "scrot -e 'mv $f ~/Screenshots'; exec notify-send 'Screenshot has been saved'"
 bindsym $mod+Print --release exec --no-startup-id "scrot -e 'mv $f ~/Screenshots'; sleep 1; exec notify-send 'Screenshot has been saved'"
 bindsym $mod+Shift+Print --release exec "notify-send 'Selection will be saved'; scrot -se 'mv $f ~/Screenshots'"
 
@@ -300,9 +302,7 @@ bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart du
 exec --no-startup-id nm-applet
 exec --no-startup-id clipit
 exec --no-startup-id xautolock -time 30 -locker lock -notify 30 -notifier "notify-send -u critical xautolock 'Locking screen in 30 seconds'"
-exec --no-startup-id compton -b
 exec --no-startup-id dunst
-# exec --no-startup-id python ~/.i3/change_wallpaper.py
 
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] 1
@@ -313,6 +313,7 @@ for_window [class="Clipgrab"] floating enable
 for_window [class="Firefox" title="Library"] floating enable
 for_window [class="Firefox" title="Firefox Preferences"] floating enable
 for_window [class="GParted"] floating enable
+for_window [class="Gtk-recordMyDesktop"] floating enable
 for_window [class="Gtkwave"] floating enable
 for_window [class="Lightdm-gtk-greeter-settings"] floating enable
 for_window [class="Lxappearance"] floating enable sticky enable
@@ -321,6 +322,7 @@ for_window [class="Manjaro Welcome"] floating enable
 for_window [class="Nitrogen"] floating enable sticky enable
 for_window [class="Pamac-manager"] floating enable
 for_window [class="Pamac-updater"] floating enable
+for_window [class="Pavucontrol"] floating enable
 for_window [class="Qtconfig-qt4"] floating enable sticky enable
 for_window [class="Simple-scan"] floating enable
 for_window [class="(?i)System-config-printer.py"] floating enable

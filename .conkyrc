@@ -2,7 +2,7 @@
 
 conky.config = {
 	alignment = 'middle_middle',
-	background = true,
+	background = false,
 	cpu_avg_samples = 2,
 	default_color = 'FFFFFF',
 	default_bar_height = 9,
@@ -11,7 +11,7 @@ conky.config = {
 	draw_outline = false,
 	draw_shades = false,
 	use_xft = true,
-	font = 'Roboto Light:size=21',
+	font = 'Noto Sans:size=21',
 	gap_x = 487,
 	gap_y = -230,
 	minimum_height = 472,
@@ -38,13 +38,13 @@ conky.config = {
  	}
 
 conky.text = [[
-$alignc${offset 12}${voffset 105}${time %H:%M}
-$alignr${offset -171}${voffset 25}${font Roboto:size=11}${color1}${mem}
+$alignc${offset 12}${voffset 100}${time %H:%M}
+$alignr${offset -171}${voffset 20}${font Noto:size=11}${color1}${mem}
 ${color3}${offset 16}${membar}${offset -205}$color4${execibar 3599 echo 0}
-${offset 235}${voffset -43}${font Roboto Light:size=31}${color2}${memperc}%
-${alignr}${offset -310}${voffset 24}${font Roboto:size=11}${color1}${freq} MHz
-${offset 95}${voffset -34}${font Roboto Light:size=25}${color2}${cpu}%
-${alignr}${offset -310}${voffset 30}${font Roboto:size=11}${color1}ACPI
-${offset 94}${voffset -34}${font Roboto Light:size=25}${color2}${acpitemp}°
+${offset 235}${voffset -45}${font Noto Sans:size=31}${color2}${memperc}%
+${alignr}${offset -310}${voffset 10}${font Noto:size=11}${color1}${freq} MHz
+${offset 95}${voffset -34}${font Noto Sans:size=25}${color2}${cpu}%
+${alignr}${offset -310}${voffset 20}${font Noto:size=11}${color1}ACPI
+${offset 94}${voffset -34}${font Noto Sans:size=25}${color2}${acpitemp}°
 ${image .conky-bg.png -s 395x472}
 ]]

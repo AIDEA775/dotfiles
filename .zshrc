@@ -23,7 +23,7 @@ COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Plugins
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Custom plugins may be added to $ZSH/custom/plugins/
 plugins=(git zsh-syntax-highlighting)
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
@@ -35,6 +35,7 @@ alias mp="mousepad"
 alias py="python"
 alias config="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias okey-google="ping google.com"
+alias find="find 2>/dev/null"
 
 alias mips-gcc='mips-linux-gnu-gcc-4.6'
 alias mips-objdump='mips-linux-gnu-objdump'
