@@ -5,7 +5,7 @@
 set $mod Mod4
 
 # set default desktop layout
-workspace_layout tabbed
+workspace_layout default
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 new_window none
@@ -40,11 +40,11 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # Modifier bar mode
-bindsym $mod+space bar mode toggle status
+bindsym $mod+l bar mode toggle status
 
 # Screen brightness controls
-# bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
-# bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
+#bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
+#bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
 
 
 ################################
@@ -52,8 +52,8 @@ bindsym $mod+space bar mode toggle status
 ################################
 
 # navigate workspaces include emptys
-bindsym $mod+h exec --no-startup-id ~/.i3/prev.sh
-bindsym $mod+i exec --no-startup-id ~/.i3/next.sh
+bindsym $mod+h exec --no-startup-id prev-ws
+bindsym $mod+i exec --no-startup-id next-ws
 
 # navigate workspaces without emptys
 bindsym $mod+Right workspace next
@@ -109,13 +109,13 @@ bindsym $mod+Tab scratchpad show
 ################################
 
 # Workspace names
-set $wm1 "1: one "
-set $wm2 "2: two "
-set $wm3 "3: thr "
-set $wm4 "4: fou "
-set $wm5 "5: fiv "
-set $wm6 "6: six "
-set $wm7 "7: sev "
+set $wm1 1
+set $wm2 2
+set $wm3 3
+set $wm4 4
+set $wm5 5
+set $wm6 6
+set $wm7 7
 
 # switch to workspace
 bindsym $mod+1 workspace $wm1
@@ -152,7 +152,7 @@ bindsym $mod+Shift+7 move container to workspace $wm7; workspace $wm7
 
 # Set shut down, restart and locking features
 set $mode_system  System: (L)ock/(R)eboot/(P)oweroff
-bindsym $mod+0 mode "$mode_system"
+bindsym $mod+p mode "$mode_system"
 mode "$mode_system" {
     bindsym l exec --no-startup-id lock, mode "default"
     bindsym r exec --no-startup-id reboot, mode "default"
@@ -249,33 +249,6 @@ client.unfocused        $dark1  $dark1  $gray   $unknown
 client.urgent           $urgent $urgent $white  $unknown
 client.background       $clear0
 
-# i3bar
-bar {
-    id status
-    status_command i3blocks -c ~/.i3/i3blocks/config
-
-    mode dock
-    hidden_state hide
-    modifier mod4
-    position bottom
-
-    workspace_buttons yes
-    strip_workspace_numbers yes
-    binding_mode_indicator yes
-    tray_padding 1px
-
-    font pango:NotoSans Nerd Font 12
-    colors {
-        #                  border   backgr   text
-        focused_workspace  $clear1  $clear1  $dark0
-        active_workspace   $clear1  $clear1  $gray
-        inactive_workspace $clear0  $clear0  $dark2
-        urgent_workspace   $urgent  $urgent  $white
-
-        background $clear0
-    }
-}
-
 
 ##################################
 ### Settings for applications: ###
@@ -293,16 +266,13 @@ bindsym $mod+Print --release exec --no-startup-id "scrot -e 'mv $f ~/Screenshots
 bindsym $mod+Shift+Print --release exec "notify-send 'Selection will be saved'; scrot -se 'mv $f ~/Screenshots'"
 
 bindsym $mod+Return exec urxvt
-bindsym $mod+s exec --no-startup-id dmenu_recent
+bindsym $mod+space exec --no-startup-id dmenu_recent
 # bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
 bindsym $mod+Ctrl+x exec xkill
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 
 # Autostart applications
-exec --no-startup-id nm-applet
-exec --no-startup-id clipit
-exec --no-startup-id xautolock -time 30 -locker lock -notify 30 -notifier "notify-send -u critical xautolock 'Locking screen in 30 seconds'"
-exec --no-startup-id dunst
+exec --no-startup-id i3wm-startup
 
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] 1
@@ -318,10 +288,7 @@ for_window [class="Gtkwave"] floating enable
 for_window [class="Lightdm-gtk-greeter-settings"] floating enable
 for_window [class="Lxappearance"] floating enable sticky enable
 for_window [class="manjaro-settings-manager-gui"] floating enable
-for_window [class="Manjaro Welcome"] floating enable
 for_window [class="Nitrogen"] floating enable sticky enable
-for_window [class="Pamac-manager"] floating enable
-for_window [class="Pamac-updater"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Qtconfig-qt4"] floating enable sticky enable
 for_window [class="Simple-scan"] floating enable
@@ -337,59 +304,11 @@ for_window [class="Youtube-dl-gui"] floating enable
 #############################
 
 # Set inner/outer gaps
-gaps inner 10
-gaps outer 0
-
-# Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
-# gaps inner|outer current|all set|plus|minus <px>
-# gaps inner all set 10
-# gaps outer all plus 5
+gaps inner 6
+gaps outer 2
 
 # Smart gaps (gaps used if only more than one container on the workspace)
-smart_gaps on
-
-# Smart borders (draw borders around container only if it is not the only container on this workspace)
-# on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-smart_borders on
-
-# Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps.
-# Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace).
-# If you also press Shift with these keys, the change will be global for all workspaces.
-set $mode_gaps Gaps: (o) outer, (i) inner
-set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
-bindsym $mod+Shift+g mode "$mode_gaps"
-
-mode "$mode_gaps" {
-        bindsym o      mode "$mode_gaps_outer"
-        bindsym i      mode "$mode_gaps_inner"
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_inner" {
-        bindsym plus  gaps inner current plus 5
-        bindsym minus gaps inner current minus 5
-        bindsym 0     gaps inner current set 0
-
-        bindsym Shift+plus  gaps inner all plus 5
-        bindsym Shift+minus gaps inner all minus 5
-        bindsym Shift+0     gaps inner all set 0
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_outer" {
-        bindsym plus  gaps outer current plus 5
-        bindsym minus gaps outer current minus 5
-        bindsym 0     gaps outer current set 0
-
-        bindsym Shift+plus  gaps outer all plus 5
-        bindsym Shift+minus gaps outer all minus 5
-        bindsym Shift+0     gaps outer all set 0
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
+#smart_gaps on
 
 
 ################################################################################################

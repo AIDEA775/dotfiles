@@ -42,8 +42,6 @@ alias mips-objdump='mips-linux-gnu-objdump'
 alias gcc-allflags='gcc -Wall -Wextra -Werror -pedantic -std=c99 -g'
 
 
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 ZSH_CACHE_DIR=$HOME/.oh-my-zsh-cache
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
   mkdir $ZSH_CACHE_DIR
